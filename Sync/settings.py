@@ -197,6 +197,11 @@ EMPRESA = {
 # no projeto, mas a página dá 404 e os links somem. Para ligar: POLITICA_PRIVACIDADE_ATIVA=True no .env
 POLITICA_PRIVACIDADE_ATIVA = env_bool("POLITICA_PRIVACIDADE_ATIVA", False)
 
+# Seções que podem ser desligadas sem apagar o código (mesma ideia da política).
+# Desligada = some do site e do menu. Para ligar: SECAO_SERVICOS_ATIVA=True no .env
+SECAO_SERVICOS_ATIVA = env_bool("SECAO_SERVICOS_ATIVA", False)
+SECAO_PLANOS_ATIVA = env_bool("SECAO_PLANOS_ATIVA", False)
+
 # script de estatísticas sem cookies (opcional), ex.: seudominio.com.br
 PLAUSIBLE_DOMAIN = env("PLAUSIBLE_DOMAIN")
 

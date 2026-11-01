@@ -519,7 +519,9 @@ function radialTexture(THREE, stops) {
   const links = [...document.querySelectorAll('.nav__links a[href^="#"]')];
   const secoes = links
     .map((a) => document.querySelector(a.getAttribute("href")))
-    .filter((el) => el && !el.hidden);
+    .filter((el) => el && !el.hidden)
+    // ordem da página, não do menu (ex.: a faixa de serviços vem antes do "Sobre")
+    .sort((a, b) => (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1));
 
   // fixa a navegação depois que a original sai da tela
   let fixa = false;

@@ -17,4 +17,6 @@ def site(request):
         "empresa": empresa,
         "plausible_domain": settings.PLAUSIBLE_DOMAIN,
         "politica_ativa": settings.POLITICA_PRIVACIDADE_ATIVA,
+        "servicos_ativa": settings.SECAO_SERVICOS_ATIVA,
+        "planos_ativa": settings.SECAO_PLANOS_ATIVA,
     }

@@ -9,6 +9,15 @@ class PaginasTests(TestCase):
         self.assertNotContains(resposta, "CNPJ")
         self.assertNotContains(resposta, "Horário")
 
+    def test_servicos_e_planos_desligados(self):
+        with self.settings(SECAO_SERVICOS_ATIVA=False, SECAO_PLANOS_ATIVA=False):
+            resposta = self.client.get(reverse("core:home"))
+        self.assertNotContains(resposta, 'id="servicos"')
+        self.assertNotContains(resposta, 'id="planos"')
+        self.assertNotContains(resposta, 'href="#servicos"')
+        self.assertNotContains(resposta, 'href="#planos"')
+
+    @override_settings(SECAO_SERVICOS_ATIVA=True, SECAO_PLANOS_ATIVA=True)
     def test_home_mostra_planos_e_duvidas_cadastrados(self):
         resposta = self.client.get(reverse("core:home"))
         self.assertEqual(resposta.status_code, 200)

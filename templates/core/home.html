@@ -143,8 +143,8 @@
               <ul class="nav__links">
                 <li><a href="#inicio" aria-current="page">Início</a></li>
                 <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#servicos">Serviços</a></li>
-                <li><a href="#planos">Planos</a></li>
+                {% if servicos_ativa %}<li><a href="#servicos">Serviços</a></li>{% endif %}
+                {% if planos_ativa %}<li><a href="#planos">Planos</a></li>{% endif %}
                 <li><a href="#contato">Contato</a></li>
               </ul>
             </nav>
@@ -161,8 +161,8 @@
             <nav id="menu-mobile" class="nav__mobile" aria-label="Menu" hidden>
               <a href="#inicio">Início</a>
               <a href="#sobre">Sobre</a>
-              <a href="#servicos">Serviços</a>
-              <a href="#planos">Planos</a>
+              {% if servicos_ativa %}<a href="#servicos">Serviços</a>{% endif %}
+              {% if planos_ativa %}<a href="#planos">Planos</a>{% endif %}
               <a href="#contato">Contato</a>
               <a href="#contato" class="btn btn--primario">Pedir orçamento</a>
             </nav>
@@ -180,9 +180,11 @@
                 mais pela internet.
               </p>
 
-              <div class="hero__botoes">
-                <a href="#servicos" class="btn btn--secundario btn--grande">Ver serviços</a>
-              </div>
+              {% if servicos_ativa %}
+                <div class="hero__botoes">
+                  <a href="#servicos" class="btn btn--secundario btn--grande">Ver serviços</a>
+                </div>
+              {% endif %}
             </div>
 
             <!-- OBJETO 3D: o script.js cria o canvas dentro de .sw-star__canvas -->
@@ -209,6 +211,7 @@
             </div>
           </div>
 
+          {% if servicos_ativa %}
           <section class="diferenciais" id="servicos" aria-labelledby="servicos-titulo">
             <h2 class="sr-only" id="servicos-titulo">Serviços</h2>
             <div class="diferencial">
@@ -240,6 +243,7 @@
               <p>Suas plataformas trocando dados entre si.</p>
             </div>
           </section>
+          {% endif %}
         </div>
       </section>
 
@@ -358,7 +362,7 @@
       {% endif %}
 
       <!-- ===================== PLANOS (editáveis no admin) ===================== -->
-      {% if planos %}
+      {% if planos_ativa and planos %}
         <section class="secao" id="planos" aria-labelledby="planos-titulo">
           <div class="secao__inner">
             <div class="secao__cabecalho" data-revelar>

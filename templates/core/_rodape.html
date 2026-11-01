@@ -11,9 +11,9 @@
       <h2>Navegação</h2>
       <ul role="list">
         <li><a href="{{ url_home }}#sobre">Sobre</a></li>
-        <li><a href="{{ url_home }}#servicos">Serviços</a></li>
+        {% if servicos_ativa %}<li><a href="{{ url_home }}#servicos">Serviços</a></li>{% endif %}
         <li><a href="{{ url_home }}#como-funciona">Como funciona</a></li>
-        <li><a href="{{ url_home }}#planos">Planos</a></li>
+        {% if planos_ativa %}<li><a href="{{ url_home }}#planos">Planos</a></li>{% endif %}
         <li><a href="{{ url_home }}#duvidas">Dúvidas</a></li>
       </ul>
     </nav>
