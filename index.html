@@ -10,22 +10,72 @@
     />
     <meta name="theme-color" content="#101820" />
 
-    <!-- Fontes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700&display=swap"
-      rel="stylesheet"
+    <!--
+      TROCAR: substitua "https://www.seudominio.com.br" pelo domínio real do site
+      aqui no <head>, no robots.txt e no sitemap.xml.
+    -->
+    <link rel="canonical" href="https://www.seudominio.com.br/" />
+
+    <!-- Ícones -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+    <!-- Compartilhamento (WhatsApp, LinkedIn, Facebook, X) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="SyncWeb Solutions" />
+    <meta property="og:title" content="SyncWeb Solutions | Sites, sistemas e automações sob medida" />
+    <meta
+      property="og:description"
+      content="Criamos sites, sistemas de gestão e automações para empresas que querem organizar processos e vender mais pela internet."
     />
+    <meta property="og:url" content="https://www.seudominio.com.br/" />
+    <meta property="og:image" content="https://www.seudominio.com.br/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="SyncWeb Solutions: sites, sistemas e automações sob medida" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Dados estruturados para o Google -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "SyncWeb Solutions",
+        "url": "https://www.seudominio.com.br/",
+        "logo": "https://www.seudominio.com.br/apple-touch-icon.png",
+        "image": "https://www.seudominio.com.br/og-image.png",
+        "description": "Criamos sites, sistemas de gestão e automações para empresas que querem organizar processos e vender mais pela internet.",
+        "areaServed": "BR",
+        "email": "contato@seudominio.com.br",
+        "telephone": "+55-00-00000-0000",
+        "knowsAbout": ["Desenvolvimento de sites", "Sistemas de gestão", "Automação de processos", "Integrações"]
+      }
+    </script>
+
+    <!-- Fontes: ficam na pasta /fonts (sem depender do Google Fonts) -->
+    <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
 
     <link rel="stylesheet" href="style.css" />
+    <!-- avisa o CSS que o JavaScript está ativo (animações de entrada) -->
+    <script>document.documentElement.classList.add("js");</script>
 
-    <!-- three.js (objeto 3D) fica num arquivo local: não depende de internet -->
-    <script src="three.min.js" defer></script>
+    <!-- o three.js (objeto 3D) é carregado pelo script.js depois que a página aparece -->
     <script src="script.js" defer></script>
+
+    <!--
+      Estatísticas sem cookies (opcional). Crie uma conta no Plausible (plausible.io)
+      ou Umami (umami.is) e descomente a linha correspondente:
+      <script defer data-domain="seudominio.com.br" src="https://plausible.io/js/script.js"></script>
+    -->
   </head>
 
-  <body>
+  <body data-whatsapp="5500000000000">
+    <!-- TROCAR: data-whatsapp acima = número com DDI + DDD, só dígitos (ex.: 5511987654321) -->
+    <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
     <main>
       <section class="hero" id="inicio">
         <!-- ===================== FUNDO ANIMADO ===================== -->
@@ -161,7 +211,6 @@
             </nav>
 
             <div class="nav__acoes">
-              <a href="#entrar" class="nav__entrar">Entrar</a>
               <a href="#contato" class="btn btn--primario">Pedir orçamento</a>
             </div>
 
@@ -176,12 +225,11 @@
               <a href="#servicos">Serviços</a>
               <a href="#planos">Planos</a>
               <a href="#contato">Contato</a>
-              <a href="#entrar">Entrar</a>
               <a href="#contato" class="btn btn--primario">Pedir orçamento</a>
             </nav>
           </header>
 
-          <div class="hero__grid">
+          <div class="hero__grid" id="conteudo" tabindex="-1">
             <div class="hero__conteudo">
               <p class="selo">
                 <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="m18 16 4-4-4-4" /><path d="m6 8-4 4 4 4" /><path d="m14.5 4-5 16" /></svg>
@@ -228,38 +276,424 @@
             </div>
           </div>
 
-          <div class="diferenciais" id="servicos">
+          <section class="diferenciais" id="servicos" aria-labelledby="servicos-titulo">
+            <h2 class="sr-only" id="servicos-titulo">Serviços</h2>
             <div class="diferencial">
               <span class="diferencial__icone">
                 <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z" /></svg>
               </span>
-              <h2>Sites profissionais</h2>
+              <h3>Sites profissionais</h3>
               <p>Rápidos, responsivos e prontos para aparecer no Google.</p>
             </div>
             <div class="diferencial">
               <span class="diferencial__icone">
                 <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg>
               </span>
-              <h2>Sistemas sob medida</h2>
+              <h3>Sistemas sob medida</h3>
               <p>Clientes, vendas e operação organizados num só lugar.</p>
             </div>
             <div class="diferencial">
               <span class="diferencial__icone">
                 <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2" /><path d="M7 11v4a2 2 0 0 0 2 2h4" /><rect width="8" height="8" x="13" y="13" rx="2" /></svg>
               </span>
-              <h2>Automação de processos</h2>
+              <h3>Automação de processos</h3>
               <p>Menos tarefa repetitiva e menos erro manual.</p>
             </div>
             <div class="diferencial">
               <span class="diferencial__icone">
                 <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22v-5" /><path d="M15 8V2" /><path d="M17 8a1 1 0 0 1 1 1v4a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1z" /><path d="M9 8V2" /></svg>
               </span>
-              <h2>Integrações</h2>
+              <h3>Integrações</h3>
               <p>Suas plataformas trocando dados entre si.</p>
             </div>
+          </section>
+        </div>
+      </section>
+
+      <!-- ===================== SOBRE ===================== -->
+      <section class="secao" id="sobre" aria-labelledby="sobre-titulo">
+        <div class="secao__inner sobre">
+          <div class="sobre__texto" data-revelar>
+            <p class="secao__rotulo">Sobre a SyncWeb</p>
+            <h2 class="secao__titulo" id="sobre-titulo">Tecnologia que resolve o problema <span>do seu negócio</span></h2>
+            <!-- TROCAR: conte aqui quem está por trás da SyncWeb (nome, experiência, cidade) -->
+            <p>
+              A SyncWeb Solutions desenvolve sites, sistemas e automações sob medida para pequenas e médias empresas. A
+              gente começa entendendo como a sua empresa funciona hoje e só depois escolhe a tecnologia.
+            </p>
+            <p>
+              Usamos inteligência artificial no nosso processo de desenvolvimento para entregar mais rápido, sem abrir mão de
+              código bem feito, revisado e pensado para crescer junto com você.
+            </p>
+          </div>
+
+          <ul class="pilares" role="list">
+            <li class="pilar" data-revelar>
+              <span class="pilar__icone"><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /></svg></span>
+              <div>
+                <h3>Atendimento direto</h3>
+                <p>Você fala com quem desenvolve o seu projeto, sem intermediários e sem termos técnicos.</p>
+              </div>
+            </li>
+            <li class="pilar" data-revelar>
+              <span class="pilar__icone"><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3" /><path d="M18.4 5.6l-2.1 2.1" /><path d="M21 12h-3" /><path d="M18.4 18.4l-2.1-2.1" /><path d="M12 21v-3" /><path d="M5.6 18.4l2.1-2.1" /><path d="M3 12h3" /><path d="M5.6 5.6l2.1 2.1" /></svg></span>
+              <div>
+                <h3>IA a favor do prazo</h3>
+                <p>Ferramentas de IA aceleram o desenvolvimento e liberam tempo para o que importa: entender a sua operação.</p>
+              </div>
+            </li>
+            <li class="pilar" data-revelar>
+              <span class="pilar__icone"><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16" /><path d="m19 9-5 5-4-4-3 3" /></svg></span>
+              <div>
+                <h3>Foco em resultado</h3>
+                <p>Cada entrega tem um objetivo claro: vender mais, economizar tempo ou reduzir erros.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===================== COMO FUNCIONA ===================== -->
+      <section class="secao secao--alt" id="como-funciona" aria-labelledby="processo-titulo">
+        <div class="secao__inner">
+          <div class="secao__cabecalho" data-revelar>
+            <p class="secao__rotulo">Como funciona</p>
+            <h2 class="secao__titulo" id="processo-titulo">Do primeiro contato <span>à entrega</span></h2>
+            <p class="secao__descricao">Um processo simples e transparente, com você acompanhando cada etapa.</p>
+          </div>
+
+          <ol class="etapas" role="list">
+            <li class="etapa" data-revelar>
+              <span class="etapa__numero">01</span>
+              <h3>Conversa</h3>
+              <p>Entendemos o seu negócio, o problema e o que você espera do projeto.</p>
+            </li>
+            <li class="etapa" data-revelar>
+              <span class="etapa__numero">02</span>
+              <h3>Proposta</h3>
+              <p>Você recebe escopo, prazo e valor por escrito, sem surpresas.</p>
+            </li>
+            <li class="etapa" data-revelar>
+              <span class="etapa__numero">03</span>
+              <h3>Desenvolvimento</h3>
+              <p>Construímos em etapas e mostramos o andamento para você validar.</p>
+            </li>
+            <li class="etapa" data-revelar>
+              <span class="etapa__numero">04</span>
+              <h3>Entrega</h3>
+              <p>Publicamos, testamos tudo com você e explicamos como usar.</p>
+            </li>
+            <li class="etapa" data-revelar>
+              <span class="etapa__numero">05</span>
+              <h3>Suporte</h3>
+              <p>Seguimos por perto para ajustes, melhorias e novas ideias.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!--
+        ===================== PROJETOS (PORTFÓLIO) =====================
+        Pronto para usar, mas escondido (atributo "hidden") até ter projetos reais.
+        Para ativar: troque os textos entre [colchetes], coloque os prints em /img
+        e apague o atributo hidden da <section> abaixo.
+      -->
+      <section class="secao" id="projetos" aria-labelledby="projetos-titulo" hidden>
+        <div class="secao__inner">
+          <div class="secao__cabecalho" data-revelar>
+            <p class="secao__rotulo">Projetos</p>
+            <h2 class="secao__titulo" id="projetos-titulo">Alguns trabalhos <span>recentes</span></h2>
+          </div>
+          <div class="projetos">
+            <article class="projeto" data-revelar>
+              <div class="projeto__imagem"><!-- <img src="img/projeto-1.webp" alt="[Descrição do print]" loading="lazy" width="800" height="500" /> --></div>
+              <div class="projeto__corpo">
+                <p class="projeto__tipo">[Site institucional]</p>
+                <h3>[Nome do cliente]</h3>
+                <p><strong>Problema:</strong> [o que o cliente precisava].</p>
+                <p><strong>Resultado:</strong> [o que mudou depois do projeto].</p>
+              </div>
+            </article>
+            <article class="projeto" data-revelar>
+              <div class="projeto__imagem"></div>
+              <div class="projeto__corpo">
+                <p class="projeto__tipo">[Sistema de gestão]</p>
+                <h3>[Nome do cliente]</h3>
+                <p><strong>Problema:</strong> [o que o cliente precisava].</p>
+                <p><strong>Resultado:</strong> [o que mudou depois do projeto].</p>
+              </div>
+            </article>
+            <article class="projeto" data-revelar>
+              <div class="projeto__imagem"></div>
+              <div class="projeto__corpo">
+                <p class="projeto__tipo">[Automação]</p>
+                <h3>[Nome do cliente]</h3>
+                <p><strong>Problema:</strong> [o que o cliente precisava].</p>
+                <p><strong>Resultado:</strong> [o que mudou depois do projeto].</p>
+              </div>
+            </article>
           </div>
         </div>
       </section>
+
+      <!-- ===================== PLANOS ===================== -->
+      <section class="secao" id="planos" aria-labelledby="planos-titulo">
+        <div class="secao__inner">
+          <div class="secao__cabecalho" data-revelar>
+            <p class="secao__rotulo">Planos</p>
+            <h2 class="secao__titulo" id="planos-titulo">Escolha o ponto <span>de partida</span></h2>
+            <p class="secao__descricao">
+              Cada projeto é orçado sob medida. Os planos abaixo mostram o que normalmente entra em cada tipo de trabalho.
+            </p>
+          </div>
+
+          <!-- TROCAR: se quiser mostrar preço, substitua "Sob consulta" por "a partir de R$ X" -->
+          <div class="planos">
+            <article class="plano" data-revelar>
+              <h3 class="plano__nome">Site profissional</h3>
+              <p class="plano__resumo">Para quem precisa ser encontrado e passar confiança na internet.</p>
+              <p class="plano__preco">Sob consulta</p>
+              <ul class="plano__itens" role="list">
+                <li>Site institucional ou página de vendas</li>
+                <li>Adaptado para celular, tablet e computador</li>
+                <li>Otimizado para aparecer no Google</li>
+                <li>Botão de WhatsApp e formulário de contato</li>
+              </ul>
+              <a href="#contato" class="btn btn--secundario" data-servico="Site profissional">Quero um site</a>
+            </article>
+
+            <article class="plano plano--destaque" data-revelar>
+              <h3 class="plano__nome">Sistema sob medida</h3>
+              <p class="plano__resumo">Para organizar clientes, vendas e operação num só lugar.</p>
+              <p class="plano__preco">Sob consulta</p>
+              <ul class="plano__itens" role="list">
+                <li>Cadastro de clientes, pedidos, estoque ou agenda</li>
+                <li>Painel com relatórios do seu negócio</li>
+                <li>Acesso com login para a sua equipe</li>
+                <li>Treinamento para começar a usar</li>
+              </ul>
+              <a href="#contato" class="btn btn--primario" data-servico="Sistema sob medida">Quero um sistema</a>
+            </article>
+
+            <article class="plano" data-revelar>
+              <h3 class="plano__nome">Automação e integrações</h3>
+              <p class="plano__resumo">Para acabar com tarefas repetitivas e retrabalho.</p>
+              <p class="plano__preco">Sob consulta</p>
+              <ul class="plano__itens" role="list">
+                <li>Mapeamento do processo atual</li>
+                <li>Automação de tarefas manuais</li>
+                <li>Integração entre planilhas, sistemas e lojas virtuais</li>
+                <li>Acompanhamento após a implantação</li>
+              </ul>
+              <a href="#contato" class="btn btn--secundario" data-servico="Automação e integrações">Quero automatizar</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!--
+        ===================== DEPOIMENTOS =====================
+        Escondido até ter depoimentos reais (com autorização do cliente).
+        Para ativar: troque os textos e apague o atributo hidden.
+      -->
+      <section class="secao secao--alt" id="depoimentos" aria-labelledby="depoimentos-titulo" hidden>
+        <div class="secao__inner">
+          <div class="secao__cabecalho" data-revelar>
+            <p class="secao__rotulo">Depoimentos</p>
+            <h2 class="secao__titulo" id="depoimentos-titulo">Quem já trabalhou <span>com a gente</span></h2>
+          </div>
+          <div class="depoimentos">
+            <figure class="depoimento" data-revelar>
+              <blockquote><p>[Depoimento do cliente]</p></blockquote>
+              <figcaption><strong>[Nome]</strong> [Cargo, Empresa]</figcaption>
+            </figure>
+            <figure class="depoimento" data-revelar>
+              <blockquote><p>[Depoimento do cliente]</p></blockquote>
+              <figcaption><strong>[Nome]</strong> [Cargo, Empresa]</figcaption>
+            </figure>
+            <figure class="depoimento" data-revelar>
+              <blockquote><p>[Depoimento do cliente]</p></blockquote>
+              <figcaption><strong>[Nome]</strong> [Cargo, Empresa]</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== PERGUNTAS FREQUENTES ===================== -->
+      <!-- TROCAR: revise as respostas para refletir exatamente como a SyncWeb trabalha -->
+      <section class="secao" id="duvidas" aria-labelledby="duvidas-titulo">
+        <div class="secao__inner faq">
+          <div class="secao__cabecalho" data-revelar>
+            <p class="secao__rotulo">Dúvidas frequentes</p>
+            <h2 class="secao__titulo" id="duvidas-titulo">Perguntas <span>que sempre aparecem</span></h2>
+            <p class="secao__descricao">Não achou a sua? <a href="#contato">Fale com a gente</a>.</p>
+          </div>
+
+          <div class="faq__lista" data-revelar>
+            <details class="faq__item">
+              <summary>Quanto custa um projeto?</summary>
+              <p>
+                Depende do tamanho e do que precisa ser feito. Depois de uma conversa rápida, enviamos uma proposta com
+                valor fechado. O orçamento é gratuito e sem compromisso.
+              </p>
+            </details>
+            <details class="faq__item">
+              <summary>Quanto tempo leva?</summary>
+              <p>
+                Um site costuma levar poucas semanas. Sistemas e automações variam conforme o escopo. O prazo vai escrito
+                na proposta, antes de começarmos.
+              </p>
+            </details>
+            <details class="faq__item">
+              <summary>Vocês cuidam da hospedagem e do domínio?</summary>
+              <p>
+                Sim. Ajudamos a registrar o domínio, contratar a hospedagem e deixamos tudo configurado. Você não precisa
+                entender de tecnologia.
+              </p>
+            </details>
+            <details class="faq__item">
+              <summary>E depois que o projeto fica pronto?</summary>
+              <p>
+                Oferecemos suporte e manutenção para correções, atualizações e melhorias. Você escolhe se quer um
+                acompanhamento mensal ou chamar só quando precisar.
+              </p>
+            </details>
+            <details class="faq__item">
+              <summary>O site ou sistema fica no meu nome?</summary>
+              <p>
+                Sim. O domínio, as contas e o projeto ficam registrados em nome da sua empresa. Você não fica preso
+                a nós.
+              </p>
+            </details>
+            <details class="faq__item">
+              <summary>Atendem empresas de outras cidades?</summary>
+              <p>Sim. Todo o trabalho pode ser feito a distância, por videochamada e WhatsApp.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== CONTATO ===================== -->
+      <section class="secao secao--contato" id="contato" aria-labelledby="contato-titulo">
+        <div class="secao__inner contato">
+          <div class="contato__texto" data-revelar>
+            <p class="secao__rotulo">Contato</p>
+            <h2 class="secao__titulo" id="contato-titulo">Vamos conversar sobre <span>o seu projeto?</span></h2>
+            <p class="secao__descricao">
+              Conte rapidinho o que você precisa. Respondemos com os próximos passos e um orçamento sem compromisso.
+            </p>
+
+            <!-- TROCAR: e-mail e horário de atendimento -->
+            <ul class="canais" role="list">
+              <li>
+                <a class="canal" href="#contato" data-whatsapp-link>
+                  <span class="canal__icone"><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /></svg></span>
+                  <span><strong>WhatsApp</strong> Resposta mais rápida</span>
+                </a>
+              </li>
+              <li>
+                <a class="canal" href="mailto:contato@seudominio.com.br">
+                  <span class="canal__icone"><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg></span>
+                  <span><strong>E-mail</strong> contato@seudominio.com.br</span>
+                </a>
+              </li>
+              <li>
+                <span class="canal">
+                  <span class="canal__icone"><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg></span>
+                  <span><strong>Horário</strong> Segunda a sexta, das 9h às 18h</span>
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- O formulário monta a mensagem e abre o WhatsApp: não precisa de servidor -->
+          <form class="formulario" id="formulario-contato" novalidate data-revelar>
+            <div class="campo">
+              <label for="f-nome">Seu nome</label>
+              <input id="f-nome" name="nome" type="text" autocomplete="name" required />
+            </div>
+            <div class="campo">
+              <label for="f-empresa">Empresa <span class="campo__opcional">(opcional)</span></label>
+              <input id="f-empresa" name="empresa" type="text" autocomplete="organization" />
+            </div>
+            <div class="campo">
+              <label for="f-servico">O que você precisa?</label>
+              <select id="f-servico" name="servico" required>
+                <option value="">Escolha uma opção</option>
+                <option>Site profissional</option>
+                <option>Sistema sob medida</option>
+                <option>Automação e integrações</option>
+                <option>Ainda não sei, quero conversar</option>
+              </select>
+            </div>
+            <div class="campo campo--largo">
+              <label for="f-mensagem">Conte um pouco sobre o projeto</label>
+              <textarea id="f-mensagem" name="mensagem" rows="4" required></textarea>
+            </div>
+            <p class="formulario__erro" id="formulario-erro" role="alert" hidden></p>
+            <button type="submit" class="btn btn--primario btn--grande">
+              Enviar pelo WhatsApp
+              <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </button>
+            <p class="formulario__aviso">
+              Seus dados são usados só para responder o seu contato.
+              <a href="politica-de-privacidade.html">Política de privacidade</a>.
+            </p>
+          </form>
+        </div>
+      </section>
     </main>
+
+    <!-- ===================== RODAPÉ ===================== -->
+    <footer class="rodape">
+      <div class="rodape__inner">
+        <div class="rodape__marca">
+          <a href="#inicio" class="marca" aria-label="SyncWeb Solutions, voltar ao topo">
+            <svg width="36" height="36" viewBox="0 0 40 40" aria-hidden="true">
+              <path d="M20 2.5 35.2 11.25v17.5L20 37.5 4.8 28.75v-17.5Z" fill="none" stroke="url(#sw-logo)" stroke-width="2.4" stroke-linejoin="round" />
+              <path d="M26.5 14.2h-9.2a3 3 0 0 0 0 6h5.4a3 3 0 0 1 0 6h-9.2" fill="none" stroke="#00C58E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span>
+              <span class="marca__nome">SYNCWEB</span>
+              <span class="marca__sub">SOLUTIONS</span>
+            </span>
+          </a>
+          <p>Sites, sistemas e automações sob medida para empresas que querem crescer.</p>
+        </div>
+
+        <nav class="rodape__coluna" aria-label="Rodapé">
+          <h2>Navegação</h2>
+          <ul role="list">
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#como-funciona">Como funciona</a></li>
+            <li><a href="#planos">Planos</a></li>
+            <li><a href="#duvidas">Dúvidas</a></li>
+          </ul>
+        </nav>
+
+        <!-- TROCAR: links das redes sociais (apague as que não usar) -->
+        <div class="rodape__coluna">
+          <h2>Contato</h2>
+          <ul role="list">
+            <li><a href="#contato" data-whatsapp-link>WhatsApp</a></li>
+            <li><a href="mailto:contato@seudominio.com.br">contato@seudominio.com.br</a></li>
+            <li><a href="https://www.instagram.com/" rel="noopener" target="_blank">Instagram</a></li>
+            <li><a href="https://www.linkedin.com/" rel="noopener" target="_blank">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rodape__base">
+        <!-- TROCAR: razão social e CNPJ -->
+        <p>© <span data-ano>2026</span> SyncWeb Solutions · CNPJ 00.000.000/0000-00</p>
+        <p><a href="politica-de-privacidade.html">Política de privacidade</a></p>
+      </div>
+    </footer>
+
+    <!-- botão flutuante de WhatsApp -->
+    <a class="whatsapp-flutuante" href="#contato" data-whatsapp-link aria-label="Conversar no WhatsApp">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16.04 3C9.04 3 3.35 8.68 3.35 15.68c0 2.24.59 4.42 1.7 6.35L3.25 28.6l6.73-1.77a12.66 12.66 0 0 0 6.06 1.54h.01c7 0 12.69-5.69 12.69-12.69 0-3.39-1.32-6.58-3.72-8.98A12.6 12.6 0 0 0 16.04 3Zm0 23.23h-.01c-1.89 0-3.75-.51-5.37-1.47l-.39-.23-4 1.05 1.07-3.9-.25-.4a10.5 10.5 0 0 1-1.61-5.6c0-5.82 4.74-10.55 10.57-10.55 2.82 0 5.47 1.1 7.46 3.1a10.48 10.48 0 0 1 3.09 7.46c0 5.82-4.74 10.54-10.56 10.54Zm5.79-7.9c-.32-.16-1.88-.93-2.17-1.03-.29-.11-.5-.16-.71.16-.21.32-.82 1.03-1 1.24-.19.21-.37.24-.69.08-.32-.16-1.34-.49-2.55-1.57-.94-.84-1.58-1.88-1.76-2.2-.19-.32-.02-.49.14-.65.14-.14.32-.37.48-.56.16-.19.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.71-.98-2.35-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.56.08-.85.4-.29.32-1.11 1.09-1.11 2.65s1.14 3.08 1.3 3.29c.16.21 2.24 3.42 5.43 4.8.76.33 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.88-.77 2.14-1.51.27-.74.27-1.38.19-1.51-.08-.13-.29-.21-.61-.37Z"/></svg>
+    </a>
   </body>
 </html>

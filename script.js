@@ -4,6 +4,9 @@
    2. Parallax do fundo (mouse e rolagem)
    3. Pausa das animações fora da tela
    4. Objeto 3D (three.js): estrela esmeralda flutuante
+   5. Navegação fixa e destaque da seção atual no menu
+   6. Animação de entrada das seções
+   7. WhatsApp: links e formulário de contato
    ===================================================================== */
 
 const reducedMQ = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -88,8 +91,23 @@ if ("IntersectionObserver" in window) {
 
 /* ---------- 4. objeto 3D ----------
    A biblioteca three.js vem no arquivo three.min.js (na mesma pasta),
-   então funciona sem internet e abrindo o index.html com dois cliques. */
-loadStar();
+   então funciona sem internet e abrindo o index.html com dois cliques.
+   Ela só é baixada depois que a página terminou de carregar: o texto aparece
+   primeiro e, enquanto isso, a estrela em SVG ocupa o lugar do 3D. */
+function loadThree() {
+  const s = document.createElement("script");
+  s.src = "three.min.js";
+  s.async = true;
+  s.onload = loadStar;
+  s.onerror = () => starEl.classList.add("is-failed");
+  document.head.appendChild(s);
+}
+function whenIdle(fn) {
+  if ("requestIdleCallback" in window) requestIdleCallback(fn, { timeout: 1500 });
+  else setTimeout(fn, 200);
+}
+if (document.readyState === "complete") whenIdle(loadThree);
+else window.addEventListener("load", () => whenIdle(loadThree), { once: true });
 
 function loadStar() {
   try {
@@ -493,3 +511,161 @@ function radialTexture(THREE, stops) {
   tex.colorSpace = THREE.SRGBColorSpace;
   return tex;
 }
+
+/* ---------- 5. navegação fixa e destaque da seção atual ---------- */
+(function navegacao() {
+  const nav = document.querySelector(".nav");
+  const heroInner = document.querySelector(".hero__inner");
+  const links = [...document.querySelectorAll('.nav__links a[href^="#"]')];
+  const secoes = links
+    .map((a) => document.querySelector(a.getAttribute("href")))
+    .filter((el) => el && !el.hidden);
+
+  // fixa a navegação depois que a original sai da tela
+  let fixa = false;
+  const atualizarFixa = () => {
+    const deveFixar = window.scrollY > nav.offsetHeight + 240;
+    if (deveFixar === fixa) return;
+    fixa = deveFixar;
+    // reserva o espaço da navegação para o conteúdo não "pular"
+    heroInner.style.paddingTop = fixa ? nav.offsetHeight + "px" : "";
+    nav.classList.toggle("is-fixa", fixa);
+    if (!fixa) setMenu(false);
+  };
+
+  // marca no menu a seção que está no meio da tela
+  const atualizarAtual = () => {
+    const meio = window.innerHeight * 0.4;
+    let atual = secoes[0];
+    for (const sec of secoes) {
+      if (sec.getBoundingClientRect().top <= meio) atual = sec;
+    }
+    // no fim da página, a última seção é a atual
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+      atual = secoes[secoes.length - 1];
+    }
+    links.forEach((a) => {
+      if (a.getAttribute("href") === "#" + atual.id) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+  };
+
+  let frame = 0;
+  const onScroll = () => {
+    if (frame) return;
+    frame = requestAnimationFrame(() => {
+      frame = 0;
+      atualizarFixa();
+      atualizarAtual();
+    });
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+  onScroll();
+})();
+
+/* ---------- 6. animação de entrada das seções ---------- */
+(function revelar() {
+  const itens = document.querySelectorAll("[data-revelar]");
+  if (!("IntersectionObserver" in window) || reducedMQ.matches) {
+    itens.forEach((el) => el.classList.add("is-visivel"));
+    return;
+  }
+  // itens lado a lado entram um pouco depois do outro
+  document.querySelectorAll(".pilares, .etapas, .planos, .projetos, .depoimentos").forEach((grupo) => {
+    grupo.querySelectorAll(":scope > [data-revelar]").forEach((el, i) => el.style.setProperty("--atraso", i * 0.08 + "s"));
+  });
+  const io = new IntersectionObserver(
+    (entradas) => {
+      entradas.forEach((e) => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add("is-visivel");
+        io.unobserve(e.target);
+      });
+    },
+    { rootMargin: "0px 0px -10% 0px" },
+  );
+  itens.forEach((el) => io.observe(el));
+})();
+
+/* ---------- 7. WhatsApp ----------
+   O número fica num lugar só: no atributo data-whatsapp do <body> (index.html). */
+const numeroBruto = (document.body.dataset.whatsapp || "").replace(/\D/g, "");
+const WHATSAPP = /^(55)?0*$/.test(numeroBruto) ? "" : numeroBruto; // número de exemplo (zeros) = não configurado
+const linkWhatsApp = (texto) =>
+  "https://wa.me/" + WHATSAPP + (texto ? "?text=" + encodeURIComponent(texto) : "");
+
+// links e botão flutuante
+document.querySelectorAll("[data-whatsapp-link]").forEach((a) => {
+  if (!WHATSAPP) return; // sem número: o link continua levando à seção de contato
+  a.href = linkWhatsApp("Olá! Vim pelo site da SyncWeb e gostaria de um orçamento.");
+  a.target = "_blank";
+  a.rel = "noopener";
+});
+
+// esconde o botão flutuante quando o formulário de contato está na tela
+(function botaoFlutuante() {
+  const botao = document.querySelector(".whatsapp-flutuante");
+  const contato = document.getElementById("contato");
+  if (!botao || !contato || !("IntersectionObserver" in window)) return;
+  new IntersectionObserver(([e]) => botao.classList.toggle("is-oculto", e.isIntersecting), {
+    threshold: 0.25,
+  }).observe(contato);
+})();
+
+// botões dos planos já escolhem o serviço no formulário
+document.querySelectorAll("[data-servico]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const select = document.getElementById("f-servico");
+    if (select) select.value = btn.dataset.servico;
+  });
+});
+
+// formulário: valida e abre o WhatsApp com a mensagem pronta
+(function formulario() {
+  const form = document.getElementById("formulario-contato");
+  if (!form) return;
+  const erro = document.getElementById("formulario-erro");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const campos = [...form.querySelectorAll("[required]")];
+    const vazios = campos.filter((c) => !c.value.trim());
+    campos.forEach((c) => c.setAttribute("aria-invalid", String(vazios.includes(c))));
+
+    if (vazios.length) {
+      erro.textContent = "Preencha os campos: " + vazios.map((c) => form.querySelector(`label[for="${c.id}"]`).childNodes[0].textContent.trim()).join(", ") + ".";
+      erro.hidden = false;
+      vazios[0].focus();
+      return;
+    }
+    erro.hidden = true;
+
+    const d = Object.fromEntries(new FormData(form));
+    const texto = [
+      "Olá! Vim pelo site da SyncWeb.",
+      "",
+      "*Nome:* " + d.nome.trim(),
+      d.empresa.trim() ? "*Empresa:* " + d.empresa.trim() : null,
+      "*Preciso de:* " + d.servico,
+      "",
+      d.mensagem.trim(),
+    ]
+      .filter((l) => l !== null)
+      .join("\n");
+
+    if (!WHATSAPP) {
+      erro.textContent = "O número de WhatsApp ainda não foi configurado no site.";
+      erro.hidden = false;
+      return;
+    }
+    window.open(linkWhatsApp(texto), "_blank", "noopener");
+  });
+
+  form.addEventListener("input", (e) => {
+    if (e.target.value.trim()) e.target.removeAttribute("aria-invalid");
+  });
+})();
+
+// ano atual no rodapé
+document.querySelectorAll("[data-ano]").forEach((el) => (el.textContent = new Date().getFullYear()));
