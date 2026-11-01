@@ -6,7 +6,7 @@
    4. Objeto 3D (three.js): estrela esmeralda flutuante
    5. Navegação fixa e destaque da seção atual no menu
    6. Animação de entrada das seções
-   7. WhatsApp: links e formulário de contato
+   7. Contato: botão flutuante, planos e formulário
    ===================================================================== */
 
 const reducedMQ = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -96,7 +96,7 @@ if ("IntersectionObserver" in window) {
    primeiro e, enquanto isso, a estrela em SVG ocupa o lugar do 3D. */
 function loadThree() {
   const s = document.createElement("script");
-  s.src = "three.min.js";
+  s.src = document.body.dataset.threeSrc || "three.min.js"; // caminho vem do Django ({% static %})
   s.async = true;
   s.onload = loadStar;
   s.onerror = () => starEl.classList.add("is-failed");
@@ -588,22 +588,10 @@ function radialTexture(THREE, stops) {
   itens.forEach((el) => io.observe(el));
 })();
 
-/* ---------- 7. WhatsApp ----------
-   O número fica num lugar só: no atributo data-whatsapp do <body> (index.html). */
-const numeroBruto = (document.body.dataset.whatsapp || "").replace(/\D/g, "");
-const WHATSAPP = /^(55)?0*$/.test(numeroBruto) ? "" : numeroBruto; // número de exemplo (zeros) = não configurado
-const linkWhatsApp = (texto) =>
-  "https://wa.me/" + WHATSAPP + (texto ? "?text=" + encodeURIComponent(texto) : "");
+/* ---------- 7. contato ----------
+   Os links de WhatsApp já vêm prontos do Django. Aqui ficam só os detalhes de uso. */
 
-// links e botão flutuante
-document.querySelectorAll("[data-whatsapp-link]").forEach((a) => {
-  if (!WHATSAPP) return; // sem número: o link continua levando à seção de contato
-  a.href = linkWhatsApp("Olá! Vim pelo site da SyncWeb e gostaria de um orçamento.");
-  a.target = "_blank";
-  a.rel = "noopener";
-});
-
-// esconde o botão flutuante quando o formulário de contato está na tela
+// esconde o botão flutuante quando a seção de contato está na tela
 (function botaoFlutuante() {
   const botao = document.querySelector(".whatsapp-flutuante");
   const contato = document.getElementById("contato");
@@ -621,51 +609,34 @@ document.querySelectorAll("[data-servico]").forEach((btn) => {
   });
 });
 
-// formulário: valida e abre o WhatsApp com a mensagem pronta
+// formulário: confere os campos antes de enviar (o Django valida de novo no servidor)
 (function formulario() {
   const form = document.getElementById("formulario-contato");
   if (!form) return;
   const erro = document.getElementById("formulario-erro");
+  const nomeDoCampo = (c) => form.querySelector(`label[for="${c.id}"]`).childNodes[0].textContent.trim();
 
   form.addEventListener("submit", (e) => {
-    e.preventDefault();
     const campos = [...form.querySelectorAll("[required]")];
     const vazios = campos.filter((c) => !c.value.trim());
-    campos.forEach((c) => c.setAttribute("aria-invalid", String(vazios.includes(c))));
+    campos.forEach((c) => {
+      if (vazios.includes(c)) c.setAttribute("aria-invalid", "true");
+    });
+    if (!vazios.length) return; // tudo certo: segue o envio normal
 
-    if (vazios.length) {
-      erro.textContent = "Preencha os campos: " + vazios.map((c) => form.querySelector(`label[for="${c.id}"]`).childNodes[0].textContent.trim()).join(", ") + ".";
-      erro.hidden = false;
-      vazios[0].focus();
-      return;
-    }
-    erro.hidden = true;
-
-    const d = Object.fromEntries(new FormData(form));
-    const texto = [
-      "Olá! Vim pelo site da SyncWeb.",
-      "",
-      "*Nome:* " + d.nome.trim(),
-      d.empresa.trim() ? "*Empresa:* " + d.empresa.trim() : null,
-      "*Preciso de:* " + d.servico,
-      "",
-      d.mensagem.trim(),
-    ]
-      .filter((l) => l !== null)
-      .join("\n");
-
-    if (!WHATSAPP) {
-      erro.textContent = "O número de WhatsApp ainda não foi configurado no site.";
-      erro.hidden = false;
-      return;
-    }
-    window.open(linkWhatsApp(texto), "_blank", "noopener");
+    e.preventDefault();
+    erro.textContent = "Preencha os campos: " + vazios.map(nomeDoCampo).join(", ") + ".";
+    erro.hidden = false;
+    vazios[0].focus();
   });
 
   form.addEventListener("input", (e) => {
     if (e.target.value.trim()) e.target.removeAttribute("aria-invalid");
   });
 })();
+
+// depois de enviar: leva o foco para a confirmação (leitores de tela anunciam)
+document.getElementById("pedido-enviado")?.focus({ preventScroll: true });
 
 // ano atual no rodapé
 document.querySelectorAll("[data-ano]").forEach((el) => (el.textContent = new Date().getFullYear()));

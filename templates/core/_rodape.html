@@ -1,0 +1,39 @@
+{% load static %}
+<footer class="rodape">
+  <div class="rodape__inner">
+    <div class="rodape__marca">
+      {% url 'core:home' as url_home %}
+      {% include "core/_marca.html" with tamanho=36 href=url_home|add:"#inicio" rotulo="SyncWeb Solutions, voltar ao início" %}
+      <p>Sites, sistemas e automações sob medida para empresas que querem crescer.</p>
+    </div>
+
+    <nav class="rodape__coluna" aria-label="Rodapé">
+      <h2>Navegação</h2>
+      <ul role="list">
+        <li><a href="{{ url_home }}#sobre">Sobre</a></li>
+        <li><a href="{{ url_home }}#servicos">Serviços</a></li>
+        <li><a href="{{ url_home }}#como-funciona">Como funciona</a></li>
+        <li><a href="{{ url_home }}#planos">Planos</a></li>
+        <li><a href="{{ url_home }}#duvidas">Dúvidas</a></li>
+      </ul>
+    </nav>
+
+    <div class="rodape__coluna">
+      <h2>Contato</h2>
+      <ul role="list">
+        {% if empresa.whatsapp_link %}<li><a href="{{ empresa.whatsapp_link }}" target="_blank" rel="noopener">WhatsApp</a></li>{% endif %}
+        {% if empresa.email %}<li><a href="mailto:{{ empresa.email }}">{{ empresa.email }}</a></li>{% endif %}
+        {% if empresa.instagram %}<li><a href="{{ empresa.instagram }}" target="_blank" rel="noopener">Instagram</a></li>{% endif %}
+        {% if empresa.linkedin %}<li><a href="{{ empresa.linkedin }}" target="_blank" rel="noopener">LinkedIn</a></li>{% endif %}
+        <li><a href="{{ url_home }}#contato">Pedir orçamento</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="rodape__base">
+    <p>
+      © {% now "Y" %} {{ empresa.razao_social|default:empresa.nome }}{% if empresa.cnpj %} · CNPJ {{ empresa.cnpj }}{% endif %}
+    </p>
+    <p><a href="{% url 'core:politica_privacidade' %}">Política de privacidade</a></p>
+  </div>
+</footer>

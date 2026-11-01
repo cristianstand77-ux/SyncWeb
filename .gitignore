@@ -1,0 +1,13 @@
+# ambiente virtual e Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# segredos e dados locais
+.env
+db.sqlite3
+media/
+
+# gerado pelo collectstatic
+staticfiles/

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block titulo %}Política de privacidade | SyncWeb Solutions{% endblock %}
+{% block descricao %}Como a SyncWeb Solutions trata os dados pessoais de quem entra em contato pelo site.{% endblock %}
+
+{% block corpo %}
+    <!-- Modelo inicial: revise o texto (de preferência com um profissional) antes de publicar. -->
+    <main class="pagina">
+      <header class="pagina__topo">
+        {% include "core/_marca.html" with com_gradiente=True %}
+      </header>
+
+      <h1>Política de privacidade</h1>
+      <p>Última atualização: 1º de novembro de 2026.</p>
+
+      <p>
+        Esta política explica como a SyncWeb Solutions ({{ empresa.razao_social|default:"[razão social]" }}, CNPJ {{ empresa.cnpj|default:"[00.000.000/0000-00]" }}) trata os dados
+        pessoais de quem visita este site ou entra em contato com a gente, de acordo com a Lei Geral de Proteção de
+        Dados (Lei nº 13.709/2018, LGPD).
+      </p>
+
+      <h2>Quais dados coletamos</h2>
+      <p>
+        Só os dados que você mesmo informa ao entrar em contato: nome, empresa, WhatsApp ou e-mail, o serviço de interesse e a mensagem. O
+        formulário do site não guarda nada: ele apenas monta a mensagem e abre o WhatsApp para você enviar.
+      </p>
+      <p>
+        O site não usa cookies de publicidade nem de rastreamento. Usamos apenas um cookie técnico de segurança,
+        necessário para o envio do formulário.
+      </p>
+
+      <h2>Para que usamos</h2>
+      <ul>
+        <li>Responder ao seu contato e enviar orçamentos;</li>
+        <li>Prestar os serviços contratados;</li>
+        <li>Cumprir obrigações legais e fiscais.</li>
+      </ul>
+      <p>Não vendemos nem compartilhamos seus dados para fins de marketing de terceiros.</p>
+
+      <h2>Com quem compartilhamos</h2>
+      <p>
+        As conversas acontecem pelo WhatsApp (Meta) ou por e-mail, que têm as próprias políticas de privacidade. Fora
+        isso, só compartilhamos dados quando a lei exigir.
+      </p>
+
+      <h2>Por quanto tempo guardamos</h2>
+      <p>
+        Pelo tempo necessário para atender o seu pedido e cumprir obrigações legais. Depois disso, os dados são
+        apagados.
+      </p>
+
+      <h2>Seus direitos</h2>
+      <p>
+        Você pode pedir a qualquer momento para acessar, corrigir ou apagar seus dados, ou tirar dúvidas sobre esta
+        política, {% if empresa.email %}pelo e-mail <a href="mailto:{{ empresa.email }}">{{ empresa.email }}</a>{% else %}pelos nossos canais de contato{% endif %}.
+      </p>
+
+      <p><a href="{% url 'core:home' %}" class="btn btn--secundario">Voltar para o site</a></p>
+    </main>
+{% endblock %}

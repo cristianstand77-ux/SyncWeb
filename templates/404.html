@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{# O Django usa este arquivo automaticamente quando a página não existe (com DEBUG=False). #}
+
+{% block titulo %}Página não encontrada | SyncWeb Solutions{% endblock %}
+{% block canonical %}<meta name="robots" content="noindex" />{% endblock %}
+
+{% block corpo %}
+    <main class="pagina pagina--centro">
+      <div>
+        {% include "core/_marca.html" with com_gradiente=True %}
+        <p class="pagina__codigo">404</p>
+        <h1>Página não encontrada</h1>
+        <p>O endereço pode ter mudado ou não existe mais.</p>
+        <p><a href="/" class="btn btn--primario btn--grande">Voltar para o início</a></p>
+      </div>
+    </main>
+{% endblock %}

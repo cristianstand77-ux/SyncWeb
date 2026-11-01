@@ -1,0 +1,38 @@
+{% load static %}<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block titulo %}SyncWeb Solutions | Sites, sistemas e automações sob medida{% endblock %}</title>
+    <meta
+      name="description"
+      content="{% block descricao %}Criamos sites, sistemas de gestão e automações para empresas que querem organizar processos e vender mais pela internet.{% endblock %}"
+    />
+    <meta name="theme-color" content="#101820" />
+    {% block canonical %}<link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}" />{% endblock %}
+
+    <!-- Ícones -->
+    <link rel="icon" href="{% static 'img/favicon.svg' %}" type="image/svg+xml" />
+    <link rel="icon" href="{% static 'img/favicon-32.png' %}" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}" />
+
+    <!-- Fontes locais (pasta static/fonts) -->
+    <link rel="preload" href="{% static 'fonts/inter-latin.woff2' %}" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="{% static 'fonts/sora-latin.woff2' %}" as="font" type="font/woff2" crossorigin />
+
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <!-- avisa o CSS que o JavaScript está ativo (animações de entrada) -->
+    <script>document.documentElement.classList.add("js");</script>
+
+    {% block head_extra %}{% endblock %}
+
+    {% if plausible_domain %}
+      <!-- estatísticas sem cookies (Plausible), ligado pelo PLAUSIBLE_DOMAIN no .env -->
+      <script defer data-domain="{{ plausible_domain }}" src="https://plausible.io/js/script.js"></script>
+    {% endif %}
+  </head>
+
+  <body{% block body_attrs %}{% endblock %}>
+    {% block corpo %}{% endblock %}
+  </body>
+</html>

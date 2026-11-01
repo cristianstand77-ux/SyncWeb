@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-
-# TROCAR: domínio real
-Sitemap: https://www.seudominio.com.br/sitemap.xml
