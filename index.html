@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SyncWeb Solutions | Sites, sistemas e automações sob medida</title>
+    <meta
+      name="description"
+      content="Criamos sites, sistemas de gestão e automações para empresas que querem organizar processos e vender mais pela internet."
+    />
+    <meta name="theme-color" content="#101820" />
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- three.js (objeto 3D) fica num arquivo local: não depende de internet -->
+    <script src="three.min.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <main>
+      <section class="hero" id="inicio">
+        <!-- ===================== FUNDO ANIMADO ===================== -->
+        <div class="sw-backdrop" aria-hidden="true">
+          <!-- iluminação difusa -->
+          <div class="sw-depth" style="--d: 10; --ds: 0.18">
+            <div class="sw-glow sw-glow--core"></div>
+            <div class="sw-glow sw-glow--top"></div>
+            <div class="sw-glow sw-glow--low"></div>
+            <div class="sw-glow sw-glow--left"></div>
+          </div>
+
+          <!-- feixes de luz -->
+          <div class="sw-depth" style="--d: 6; --ds: 0.1">
+            <div class="sw-beam sw-beam--1"></div>
+            <div class="sw-beam sw-beam--2"></div>
+            <div class="sw-beam sw-beam--3"></div>
+          </div>
+
+          <!-- linhas, trilhas de luz e interseções -->
+          <div class="sw-depth" style="--d: 16; --ds: 0.06">
+            <svg class="sw-lines" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="sw-line-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1440" y2="0">
+                  <stop offset="0" stop-color="#00C58E" stop-opacity="0" />
+                  <stop offset="0.28" stop-color="#00C58E" stop-opacity="0.35" />
+                  <stop offset="0.7" stop-color="#3DE0B0" stop-opacity="0.8" />
+                  <stop offset="1" stop-color="#00C58E" stop-opacity="0.25" />
+                </linearGradient>
+                <radialGradient id="sw-node-glow">
+                  <stop offset="0" stop-color="#9BFFE2" stop-opacity="0.9" />
+                  <stop offset="0.35" stop-color="#00C58E" stop-opacity="0.35" />
+                  <stop offset="1" stop-color="#00C58E" stop-opacity="0" />
+                </radialGradient>
+              </defs>
+              <g class="sw-lines__drift">
+                <g class="sw-desk-only">
+                  <path class="sw-line" d="M-40.0 110.0 C220.0 210.0 380.0 430.0 470.0 960.0" pathLength="1000" style="--o:0.32;--breathe:16s;--draw-delay:0.2s"/>
+                  <path class="sw-trail sw-trail--halo" d="M-40.0 110.0 C220.0 210.0 380.0 430.0 470.0 960.0" pathLength="1000" style="--dur:15s;--delay:3s"/>
+                  <path class="sw-trail" d="M-40.0 110.0 C220.0 210.0 380.0 430.0 470.0 960.0" pathLength="1000" style="--dur:15s;--delay:3s"/>
+                  <path class="sw-trail sw-trail--head" d="M-40.0 110.0 C220.0 210.0 380.0 430.0 470.0 960.0" pathLength="1000" style="--dur:15s;--delay:3s"/>
+                </g>
+                <g>
+                  <path class="sw-line" d="M-80.0 600.0 C300.0 680.0 560.0 640.0 820.0 560.0 C1080.0 480.0 1260.0 380.0 1520.0 210.0" pathLength="1000" style="--o:0.55;--breathe:12s;--draw-delay:0.5s"/>
+                  <path class="sw-trail sw-trail--halo" d="M-80.0 600.0 C300.0 680.0 560.0 640.0 820.0 560.0 C1080.0 480.0 1260.0 380.0 1520.0 210.0" pathLength="1000" style="--dur:11s;--delay:0.8s"/>
+                  <path class="sw-trail" d="M-80.0 600.0 C300.0 680.0 560.0 640.0 820.0 560.0 C1080.0 480.0 1260.0 380.0 1520.0 210.0" pathLength="1000" style="--dur:11s;--delay:0.8s"/>
+                  <path class="sw-trail sw-trail--head" d="M-80.0 600.0 C300.0 680.0 560.0 640.0 820.0 560.0 C1080.0 480.0 1260.0 380.0 1520.0 210.0" pathLength="1000" style="--dur:11s;--delay:0.8s"/>
+                </g>
+                <g>
+                  <path class="sw-line" d="M1010.0 470.0 C1180.0 393.3 1350.0 316.7 1520.0 240.0" pathLength="1000" style="--o:0.5;--breathe:14s;--draw-delay:0.9s"/>
+                  <path class="sw-dot" d="M1010.0 470.0 C1180.0 393.3 1350.0 316.7 1520.0 240.0" pathLength="1000" style="--dur:8s;--delay:1.5s"/>
+                </g>
+                <g>
+                  <path class="sw-line" d="M480.0 960.0 C780.0 820.0 1080.0 720.0 1520.0 610.0" pathLength="1000" style="--o:0.45;--breathe:18s;--draw-delay:0.7s"/>
+                  <path class="sw-trail sw-trail--halo" d="M480.0 960.0 C780.0 820.0 1080.0 720.0 1520.0 610.0" pathLength="1000" style="--dur:13s;--delay:5s"/>
+                  <path class="sw-trail" d="M480.0 960.0 C780.0 820.0 1080.0 720.0 1520.0 610.0" pathLength="1000" style="--dur:13s;--delay:5s"/>
+                  <path class="sw-trail sw-trail--head" d="M480.0 960.0 C780.0 820.0 1080.0 720.0 1520.0 610.0" pathLength="1000" style="--dur:13s;--delay:5s"/>
+                </g>
+                <g>
+                  <path class="sw-line" d="M880.0 -40.0 C990.0 150.0 1200.0 250.0 1520.0 300.0" pathLength="1000" style="--o:0.4;--breathe:15s;--draw-delay:1.1s"/>
+                  <path class="sw-trail sw-trail--halo" d="M880.0 -40.0 C990.0 150.0 1200.0 250.0 1520.0 300.0" pathLength="1000" style="--dur:9.5s;--delay:7s"/>
+                  <path class="sw-trail" d="M880.0 -40.0 C990.0 150.0 1200.0 250.0 1520.0 300.0" pathLength="1000" style="--dur:9.5s;--delay:7s"/>
+                  <path class="sw-trail sw-trail--head" d="M880.0 -40.0 C990.0 150.0 1200.0 250.0 1520.0 300.0" pathLength="1000" style="--dur:9.5s;--delay:7s"/>
+                  <path class="sw-dot" d="M880.0 -40.0 C990.0 150.0 1200.0 250.0 1520.0 300.0" pathLength="1000" style="--dur:19s;--delay:2s"/>
+                </g>
+                <g class="sw-desk-only">
+                  <path class="sw-line" d="M-40.0 800.0 C240.0 720.0 430.0 790.0 640.0 960.0" pathLength="1000" style="--o:0.3;--breathe:13s;--draw-delay:0.4s"/>
+                  <path class="sw-dot" d="M-40.0 800.0 C240.0 720.0 430.0 790.0 640.0 960.0" pathLength="1000" style="--dur:17s;--delay:4s"/>
+                </g>
+                <g class="sw-node sw-desk-only" style="--dur:4.5s;--delay:0.0s"><circle cx="396.4" cy="641.2" r="14" fill="url(#sw-node-glow)"/><circle cx="396.4" cy="641.2" r="2.2" fill="#C9FFF0"/></g>
+                <g class="sw-node sw-desk-only" style="--dur:5.6s;--delay:-1.3s"><circle cx="445.5" cy="831.4" r="14" fill="url(#sw-node-glow)"/><circle cx="445.5" cy="831.4" r="2.2" fill="#C9FFF0"/></g>
+                <g class="sw-node" style="--dur:6.7s;--delay:-2.6s"><circle cx="1356.1" cy="313.9" r="14" fill="url(#sw-node-glow)"/><circle cx="1356.1" cy="313.9" r="2.2" fill="#C9FFF0"/></g>
+                <g class="sw-node" style="--dur:7.8s;--delay:-3.9s"><circle cx="1410.9" cy="280.1" r="14" fill="url(#sw-node-glow)"/><circle cx="1410.9" cy="280.1" r="2.2" fill="#C9FFF0"/></g>
+                <g class="sw-node" style="--dur:4.5s;--delay:-5.2s"><circle cx="1424.8" cy="282.9" r="14" fill="url(#sw-node-glow)"/><circle cx="1424.8" cy="282.9" r="2.2" fill="#C9FFF0"/></g>
+                <g class="sw-node" style="--dur:5.6s;--delay:-6.5s"><circle cx="771.2" cy="574.5" r="14" fill="url(#sw-node-glow)"/><circle cx="771.2" cy="574.5" r="2.2" fill="#C9FFF0"/></g>
+                <g class="sw-node" style="--dur:6.7s;--delay:-7.8s"><circle cx="1386.1" cy="300.4" r="14" fill="url(#sw-node-glow)"/><circle cx="1386.1" cy="300.4" r="2.2" fill="#C9FFF0"/></g>
+              </g>
+            </svg>
+          </div>
+
+          <!-- partículas -->
+          <div class="sw-depth" style="--d: 26; --ds: -0.08">
+            <span class="sw-particle" style="left:92.2%;top:33.1%;--s:1.4px;--o:0.71;--dx:1px;--dur:13.0s;--delay:-13.5s"></span>
+            <span class="sw-particle" style="left:25.7%;top:64.8%;--s:2.1px;--o:0.76;--dx:-10px;--dur:13.4s;--delay:-12.7s"></span>
+            <span class="sw-particle" style="left:50.6%;top:64.7%;--s:1.8px;--o:0.81;--dx:12px;--dur:11.1s;--delay:-9.2s"></span>
+            <span class="sw-particle" style="left:31.5%;top:61.5%;--s:2.0px;--o:0.81;--dx:16px;--dur:13.4s;--delay:-6.0s"></span>
+            <span class="sw-particle" style="left:17.3%;top:22.2%;--s:1.5px;--o:0.56;--dx:-8px;--dur:18.4s;--delay:-10.0s"></span>
+            <span class="sw-particle" style="left:90.1%;top:14.7%;--s:1.5px;--o:0.63;--dx:0px;--dur:13.8s;--delay:-3.5s"></span>
+            <span class="sw-particle" style="left:6.2%;top:39.2%;--s:1.6px;--o:0.68;--dx:17px;--dur:14.6s;--delay:-3.0s"></span>
+            <span class="sw-particle" style="left:61.6%;top:39.2%;--s:1.8px;--o:0.52;--dx:1px;--dur:15.5s;--delay:-4.2s"></span>
+            <span class="sw-particle" style="left:22.3%;top:79.0%;--s:2.1px;--o:0.67;--dx:1px;--dur:14.5s;--delay:-12.4s"></span>
+            <span class="sw-particle" style="left:19.9%;top:66.7%;--s:1.5px;--o:0.64;--dx:-6px;--dur:13.0s;--delay:-7.0s"></span>
+            <span class="sw-particle" style="left:39.1%;top:18.9%;--s:2.5px;--o:0.39;--dx:-4px;--dur:11.4s;--delay:-1.4s"></span>
+            <span class="sw-particle" style="left:12.8%;top:60.6%;--s:1.3px;--o:0.58;--dx:4px;--dur:11.2s;--delay:-16.6s"></span>
+            <span class="sw-particle" style="left:39.6%;top:80.8%;--s:2.6px;--o:0.73;--dx:-9px;--dur:10.1s;--delay:-4.5s"></span>
+            <span class="sw-particle" style="left:48.1%;top:59.3%;--s:1.4px;--o:0.72;--dx:-0px;--dur:16.2s;--delay:-4.3s"></span>
+            <span class="sw-particle" style="left:13.4%;top:39.9%;--s:2.6px;--o:0.41;--dx:-0px;--dur:10.0s;--delay:-16.4s"></span>
+            <span class="sw-particle" style="left:92.3%;top:11.7%;--s:2.6px;--o:0.44;--dx:19px;--dur:15.1s;--delay:-12.2s"></span>
+          </div>
+
+          <div class="sw-grain"></div>
+          <div class="sw-scrim"></div>
+        </div>
+
+        <!-- ===================== CONTEÚDO ===================== -->
+        <div class="hero__inner">
+          <header class="nav">
+            <a href="#inicio" class="marca" aria-label="SyncWeb Solutions, página inicial">
+              <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
+                <defs>
+                  <linearGradient id="sw-logo" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#3DE0B0" />
+                    <stop offset="1" stop-color="#087F68" />
+                  </linearGradient>
+                </defs>
+                <path d="M20 2.5 35.2 11.25v17.5L20 37.5 4.8 28.75v-17.5Z" fill="none" stroke="url(#sw-logo)" stroke-width="2.4" stroke-linejoin="round" />
+                <path d="M26.5 14.2h-9.2a3 3 0 0 0 0 6h5.4a3 3 0 0 1 0 6h-9.2" fill="none" stroke="#00C58E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <span>
+                <span class="marca__nome">SYNCWEB</span>
+                <span class="marca__sub">SOLUTIONS</span>
+              </span>
+            </a>
+
+            <nav aria-label="Principal">
+              <ul class="nav__links">
+                <li><a href="#inicio" aria-current="page">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#planos">Planos</a></li>
+                <li><a href="#contato">Contato</a></li>
+              </ul>
+            </nav>
+
+            <div class="nav__acoes">
+              <a href="#entrar" class="nav__entrar">Entrar</a>
+              <a href="#contato" class="btn btn--primario">Pedir orçamento</a>
+            </div>
+
+            <button type="button" class="nav__menu-btn" aria-expanded="false" aria-controls="menu-mobile" aria-label="Abrir menu">
+              <svg class="icone icone-abrir" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" /></svg>
+              <svg class="icone icone-fechar" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+            </button>
+
+            <nav id="menu-mobile" class="nav__mobile" aria-label="Menu" hidden>
+              <a href="#inicio">Início</a>
+              <a href="#sobre">Sobre</a>
+              <a href="#servicos">Serviços</a>
+              <a href="#planos">Planos</a>
+              <a href="#contato">Contato</a>
+              <a href="#entrar">Entrar</a>
+              <a href="#contato" class="btn btn--primario">Pedir orçamento</a>
+            </nav>
+          </header>
+
+          <div class="hero__grid">
+            <div class="hero__conteudo">
+              <p class="selo">
+                <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="m18 16 4-4-4-4" /><path d="m6 8-4 4 4 4" /><path d="m14.5 4-5 16" /></svg>
+                Desenvolvimento de software com IA
+              </p>
+
+              <h1 class="hero__titulo">
+                Sites, sistemas<br />e automações
+                <span class="hero__titulo-destaque">[ sob medida ]</span>
+              </h1>
+
+              <p class="hero__texto">
+                Criamos sites, sistemas de gestão e automações para empresas que querem organizar processos e vender
+                mais pela internet.
+              </p>
+
+              <div class="hero__botoes">
+                <a href="#contato" class="btn btn--primario btn--grande">Pedir orçamento</a>
+                <a href="#servicos" class="btn btn--secundario btn--grande">Ver serviços</a>
+              </div>
+            </div>
+
+            <!-- OBJETO 3D: o script.js cria o canvas dentro de .sw-star__canvas -->
+            <div class="hero__visual">
+              <div class="sw-star" id="sw-star" aria-hidden="true">
+                <svg class="sw-star__fallback" viewBox="0 0 200 200">
+                  <defs>
+                    <linearGradient id="sw-star-fill" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stop-color="#7dffd6" />
+                      <stop offset="0.45" stop-color="#00C58E" />
+                      <stop offset="1" stop-color="#087F68" />
+                    </linearGradient>
+                    <radialGradient id="sw-star-core">
+                      <stop offset="0" stop-color="#bfffe9" stop-opacity="0.9" />
+                      <stop offset="0.5" stop-color="#00C58E" stop-opacity="0.25" />
+                      <stop offset="1" stop-color="#00C58E" stop-opacity="0" />
+                    </radialGradient>
+                  </defs>
+                  <circle cx="100" cy="100" r="62" fill="url(#sw-star-core)" />
+                  <path fill="url(#sw-star-fill)" fill-rule="evenodd" d="M115.35 31.39 L112.61 28.39 L109.33 26.00 L105.60 24.39 L101.62 23.62 L97.55 23.67 L93.62 24.67 L89.96 26.42 L86.78 28.95 L84.16 32.06 L81.79 35.37 L79.41 38.68 L77.04 41.98 L74.66 45.29 L72.08 48.43 L68.50 50.28 L64.46 50.79 L60.41 51.19 L56.36 51.59 L52.31 51.99 L48.26 52.40 L44.29 53.27 L40.58 54.92 L37.32 57.34 L34.66 60.41 L32.68 63.96 L31.57 67.86 L31.26 71.91 L31.86 75.93 L33.24 79.75 L34.92 83.46 L36.60 87.17 L38.28 90.88 L39.95 94.59 L41.38 98.39 L41.19 102.42 L39.61 106.17 L37.93 109.88 L36.26 113.59 L34.58 117.30 L32.90 121.01 L31.68 124.88 L31.25 128.92 L31.72 132.96 L33.04 136.79 L35.12 140.28 L37.95 143.20 L41.30 145.49 L45.08 146.98 L49.08 147.69 L53.13 148.09 L57.19 148.49 L61.24 148.89 L65.29 149.30 L69.29 149.96 L72.69 152.14 L75.15 155.38 L77.52 158.69 L79.90 162.00 L82.27 165.31 L84.65 168.61 L87.39 171.61 L90.67 174.00 L94.40 175.61 L98.38 176.38 L102.45 176.33 L106.38 175.33 L110.04 173.58 L113.22 171.05 L115.84 167.94 L118.21 164.63 L120.59 161.32 L122.96 158.02 L125.34 154.71 L127.92 151.57 L131.50 149.72 L135.54 149.21 L139.59 148.81 L143.64 148.41 L147.69 148.01 L151.74 147.60 L155.71 146.73 L159.42 145.08 L162.68 142.66 L165.34 139.59 L167.32 136.04 L168.43 132.14 L168.74 128.09 L168.14 124.07 L166.76 120.25 L165.08 116.54 L163.40 112.83 L161.72 109.12 L160.05 105.41 L158.62 101.61 L158.81 97.58 L160.39 93.83 L162.07 90.12 L163.74 86.41 L165.42 82.70 L167.10 78.99 L168.32 75.12 L168.75 71.08 L168.28 67.04 L166.96 63.21 L164.88 59.72 L162.05 56.80 L158.70 54.51 L154.92 53.02 L150.92 52.31 L146.87 51.91 L142.81 51.51 L138.76 51.11 L134.71 50.70 L130.71 50.04 L127.31 47.86 L124.85 44.62 L122.48 41.31 L120.10 38.00 L117.73 34.69 Z M110.11 35.64 L108.11 33.42 L105.98 31.86 L103.61 30.84 L101.02 30.34 L98.43 30.37 L95.91 31.01 L93.54 32.14 L91.48 33.79 L89.49 36.20 L87.27 39.31 L84.90 42.61 L82.52 45.92 L80.01 49.41 L76.33 53.67 L70.49 56.72 L65.22 57.49 L61.08 57.91 L57.03 58.31 L52.97 58.71 L49.32 59.06 L46.40 59.68 L43.99 60.75 L41.91 62.29 L40.18 64.29 L38.91 66.54 L38.21 69.05 L38.00 71.66 L38.40 74.27 L39.50 77.20 L41.07 80.68 L42.75 84.39 L44.43 88.10 L46.19 92.01 L48.04 97.34 L47.77 103.91 L45.80 108.87 L44.08 112.66 L42.41 116.37 L40.73 120.08 L39.21 123.42 L38.28 126.26 L38.00 128.88 L38.30 131.46 L39.16 133.95 L40.48 136.18 L42.30 138.03 L44.46 139.52 L46.92 140.48 L50.01 141.00 L53.80 141.37 L57.85 141.77 L61.91 142.18 L66.18 142.60 L71.72 143.66 L77.28 147.19 L80.58 151.37 L83.01 154.75 L85.38 158.06 L87.76 161.37 L89.89 164.36 L91.89 166.58 L94.02 168.14 L96.39 169.16 L98.98 169.66 L101.57 169.63 L104.09 168.99 L106.46 167.86 L108.52 166.21 L110.51 163.80 L112.73 160.69 L115.10 157.39 L117.48 154.08 L119.99 150.59 L123.67 146.33 L129.51 143.28 L134.78 142.51 L138.92 142.09 L142.97 141.69 L147.03 141.29 L150.68 140.94 L153.60 140.32 L156.01 139.25 L158.09 137.71 L159.82 135.71 L161.09 133.46 L161.79 130.95 L162.00 128.34 L161.60 125.73 L160.50 122.80 L158.93 119.32 L157.25 115.61 L155.57 111.90 L153.81 107.99 L151.96 102.66 L152.23 96.09 L154.20 91.13 L155.92 87.34 L157.59 83.63 L159.27 79.92 L160.79 76.58 L161.72 73.74 L162.00 71.12 L161.70 68.54 L160.84 66.05 L159.52 63.82 L157.70 61.97 L155.54 60.48 L153.08 59.52 L149.99 59.00 L146.20 58.63 L142.15 58.23 L138.09 57.82 L133.82 57.40 L128.28 56.34 L122.72 52.81 L119.42 48.63 L116.99 45.25 L114.62 41.94 L112.24 38.63 Z" />
+                </svg>
+                <div class="sw-star__canvas"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="diferenciais" id="servicos">
+            <div class="diferencial">
+              <span class="diferencial__icone">
+                <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z" /></svg>
+              </span>
+              <h2>Sites profissionais</h2>
+              <p>Rápidos, responsivos e prontos para aparecer no Google.</p>
+            </div>
+            <div class="diferencial">
+              <span class="diferencial__icone">
+                <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg>
+              </span>
+              <h2>Sistemas sob medida</h2>
+              <p>Clientes, vendas e operação organizados num só lugar.</p>
+            </div>
+            <div class="diferencial">
+              <span class="diferencial__icone">
+                <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2" /><path d="M7 11v4a2 2 0 0 0 2 2h4" /><rect width="8" height="8" x="13" y="13" rx="2" /></svg>
+              </span>
+              <h2>Automação de processos</h2>
+              <p>Menos tarefa repetitiva e menos erro manual.</p>
+            </div>
+            <div class="diferencial">
+              <span class="diferencial__icone">
+                <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22v-5" /><path d="M15 8V2" /><path d="M17 8a1 1 0 0 1 1 1v4a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1z" /><path d="M9 8V2" /></svg>
+              </span>
+              <h2>Integrações</h2>
+              <p>Suas plataformas trocando dados entre si.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
