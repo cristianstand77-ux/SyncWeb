@@ -1,7 +1,7 @@
 import json
 
 from django.conf import settings
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.templatetags.static import static
 from django.urls import reverse
@@ -64,6 +64,8 @@ def home(request):
 
 
 def politica_privacidade(request):
+    if not settings.POLITICA_PRIVACIDADE_ATIVA:
+        raise Http404  # página desligada (veja POLITICA_PRIVACIDADE_ATIVA no settings)
     return render(request, "core/politica_privacidade.html")
 
 

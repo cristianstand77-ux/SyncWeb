@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
 
@@ -8,7 +9,10 @@ class PaginasSitemap(Sitemap):
     changefreq = "monthly"
 
     def items(self):
-        return [("core:home", 1.0), ("core:politica_privacidade", 0.3)]
+        itens = [("core:home", 1.0)]
+        if settings.POLITICA_PRIVACIDADE_ATIVA:
+            itens.append(("core:politica_privacidade", 0.3))
+        return itens
 
     def location(self, item):
         return reverse(item[0])

@@ -189,12 +189,13 @@ EMPRESA = {
     "nome": "SyncWeb Solutions",
     "whatsapp": "".join(c for c in env("EMPRESA_WHATSAPP") if c.isdigit()),
     "email": env("EMPRESA_EMAIL"),
-    "cnpj": env("EMPRESA_CNPJ"),
-    "razao_social": env("EMPRESA_RAZAO_SOCIAL"),
-    "horario": env("EMPRESA_HORARIO", "Segunda a sexta, das 9h às 18h"),
     "instagram": env("EMPRESA_INSTAGRAM"),
     "linkedin": env("EMPRESA_LINKEDIN"),
 }
+
+# Página de política de privacidade. Desligada por enquanto: o código continua
+# no projeto, mas a página dá 404 e os links somem. Para ligar: POLITICA_PRIVACIDADE_ATIVA=True no .env
+POLITICA_PRIVACIDADE_ATIVA = env_bool("POLITICA_PRIVACIDADE_ATIVA", False)
 
 # script de estatísticas sem cookies (opcional), ex.: seudominio.com.br
 PLAUSIBLE_DOMAIN = env("PLAUSIBLE_DOMAIN")

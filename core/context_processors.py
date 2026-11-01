@@ -13,4 +13,8 @@ def site(request):
         if numero
         else ""
     )
-    return {"empresa": empresa, "plausible_domain": settings.PLAUSIBLE_DOMAIN}
+    return {
+        "empresa": empresa,
+        "plausible_domain": settings.PLAUSIBLE_DOMAIN,
+        "politica_ativa": settings.POLITICA_PRIVACIDADE_ATIVA,
+    }

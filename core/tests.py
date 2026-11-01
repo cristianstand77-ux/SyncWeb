@@ -1,8 +1,14 @@
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import reverse
 
 
 class PaginasTests(TestCase):
+    def test_home_sem_cnpj_horario_e_titulo_curto(self):
+        resposta = self.client.get(reverse("core:home"))
+        self.assertContains(resposta, "<title>SyncWeb Solutions</title>")
+        self.assertNotContains(resposta, "CNPJ")
+        self.assertNotContains(resposta, "Horário")
+
     def test_home_mostra_planos_e_duvidas_cadastrados(self):
         resposta = self.client.get(reverse("core:home"))
         self.assertEqual(resposta.status_code, 200)
@@ -10,13 +16,20 @@ class PaginasTests(TestCase):
         self.assertContains(resposta, "Quanto custa um projeto?")  # dúvida criada na migração inicial
         self.assertNotContains(resposta, 'id="projetos"')  # sem projetos cadastrados, a seção some
 
-    def test_politica_de_privacidade(self):
+    def test_politica_desligada_nao_aparece(self):
+        with self.settings(POLITICA_PRIVACIDADE_ATIVA=False):
+            self.assertEqual(self.client.get(reverse("core:politica_privacidade")).status_code, 404)
+            self.assertNotContains(self.client.get(reverse("core:home")), "Política de privacidade")
+            self.assertNotContains(self.client.get("/sitemap.xml"), "politica-de-privacidade")
+
+    @override_settings(POLITICA_PRIVACIDADE_ATIVA=True)
+    def test_politica_ligada(self):
         self.assertEqual(self.client.get(reverse("core:politica_privacidade")).status_code, 200)
+        self.assertContains(self.client.get(reverse("core:home")), "Política de privacidade")
 
     def test_robots_aponta_para_o_sitemap(self):
         resposta = self.client.get("/robots.txt")
         self.assertContains(resposta, "Sitemap: http://testserver/sitemap.xml")
 
     def test_sitemap(self):
-        resposta = self.client.get("/sitemap.xml")
-        self.assertContains(resposta, "<loc>http://testserver/politica-de-privacidade/</loc>")
+        self.assertContains(self.client.get("/sitemap.xml"), "<loc>http://testserver/</loc>")

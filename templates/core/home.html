@@ -6,7 +6,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:site_name" content="SyncWeb Solutions" />
-    <meta property="og:title" content="SyncWeb Solutions | Sites, sistemas e automações sob medida" />
+    <meta property="og:title" content="SyncWeb Solutions" />
     <meta
       property="og:description"
       content="Criamos sites, sistemas de gestão e automações para empresas que querem organizar processos e vender mais pela internet."
@@ -181,7 +181,6 @@
               </p>
 
               <div class="hero__botoes">
-                <a href="#contato" class="btn btn--primario btn--grande">Pedir orçamento</a>
                 <a href="#servicos" class="btn btn--secundario btn--grande">Ver serviços</a>
               </div>
             </div>
@@ -456,14 +455,6 @@
                   </a>
                 </li>
               {% endif %}
-              {% if empresa.horario %}
-                <li>
-                  <span class="canal">
-                    <span class="canal__icone"><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg></span>
-                    <span><strong>Horário</strong> {{ empresa.horario }}</span>
-                  </span>
-                </li>
-              {% endif %}
             </ul>
           </div>
 
@@ -513,8 +504,8 @@
                 <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
               </button>
               <p class="formulario__aviso">
-                Seus dados são usados só para responder o seu contato.
-                <a href="{% url 'core:politica_privacidade' %}">Política de privacidade</a>.
+                Seus dados são usados só para responder o seu contato.{% if politica_ativa %}
+                <a href="{% url 'core:politica_privacidade' %}">Política de privacidade</a>.{% endif %}
               </p>
             </form>
           {% endif %}

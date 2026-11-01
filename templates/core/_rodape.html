@@ -32,8 +32,8 @@
 
   <div class="rodape__base">
     <p>
-      © {% now "Y" %} {{ empresa.razao_social|default:empresa.nome }}{% if empresa.cnpj %} · CNPJ {{ empresa.cnpj }}{% endif %}
+      © {% now "Y" %} {{ empresa.nome }}
     </p>
-    <p><a href="{% url 'core:politica_privacidade' %}">Política de privacidade</a></p>
+    {% if politica_ativa %}<p><a href="{% url 'core:politica_privacidade' %}">Política de privacidade</a></p>{% endif %}
   </div>
 </footer>
